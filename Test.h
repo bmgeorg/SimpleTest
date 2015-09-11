@@ -1,6 +1,5 @@
 #include <iostream>
 using std::cout;
-using std::cerr;
 using std::endl;
 
 // Run a test
@@ -8,7 +7,7 @@ using std::endl;
     if(testName()) \
       cout << #testName << " passed" << endl; \
     else \
-      cerr << #testName << " failed" << endl;
+      cout << #testName << " failed" << endl;
 
 // Define new test
 #define TEST_D(testName, body) \
@@ -16,6 +15,6 @@ using std::endl;
 
 #define ASSERT(statement) \
     if(!(statement)) { \
-      cerr << "Assertion (" << #statement << ") failed" << endl; \
+      cout << "Assertion (" << #statement << ") failed" << endl; \
       return false; \
     }

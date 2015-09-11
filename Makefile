@@ -1,23 +1,22 @@
 CC=clang++
-FLAGS= -std=c++11 -Wall
-OBJS= Vec2f.o Entity.o
-TESTS= Vec2fTest.test EntityTest.test
+FLAGS= -Wall
+OBJS= Number.o
+TESTS= TestNumber.test
 
+# pattern rule for object files
 %.o: %.cpp
 	$(CC) $< -o $@ -c $(FLAGS)
 
+# pattern rule for test files
 %.test: %.cpp $(OBJS)
 	$(CC) $^ -o $@ $(FLAGS)
 
+# Force make to keep intermediate OBJS files
 .SECONDARY: $(OBJS)
 .PHONY: clean test
 
-# runs all tests, showing only failures
+# runs all tests
 test: $(TESTS)
-	for test in $(TESTS); do ./$$test > /dev/null; done
-
-# runs all tests, showing all output
-testv: $(TESTS)
 	for test in $(TESTS); do ./$$test; done
 
 clean:
